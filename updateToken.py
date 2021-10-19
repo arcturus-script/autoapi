@@ -1,5 +1,4 @@
 import requests
-import ScfOperate
 
 
 def get_token(refresh_token, clien_id, secret, redirect_uri):
@@ -17,10 +16,9 @@ def get_token(refresh_token, clien_id, secret, redirect_uri):
         if 'error' in rep:
             raise Exception(rep['error_description'])
         else:
-            refresh_token = rep['refresh_token']
-            access_token = rep['access_token']
-            # 将 refresh_token 存入环境变量
-            ScfOperate.EnvWrite(refresh_token)
-            return access_token
+            return {
+                'access_token': rep['access_token'],
+                'refresh_token': rep['refresh_token']
+            }
     except Exception as e:
         print('错误详情:%s' % e)

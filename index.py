@@ -1,5 +1,6 @@
 import updateToken as ut
 import requests as req
+import ScfOperate
 import random
 import os
 import time
@@ -38,9 +39,20 @@ def start():
     secret = os.getenv('secret')
     # uri 必须和 Azure 上一模一样 少一个字符都不行
     redirect_uri = os.getenv('redirect_uri')
+    # 云函数名称
+    function_name = os.getenv('function_name')
+    # 云函数地区
+    region = os.getenv('region')
 
-    # 获取 refresh_token
-    access_token = ut.get_token(refresh_token, clien_id, secret, redirect_uri)
+    # 获取 refresh_token 和 access_token
+    token = ut.get_token(refresh_token, clien_id, secret, redirect_uri)
+    access_token = token['access_token']
+    refresh_token = token['refresh_token']
+    # 将 refresh_token 存入环境变量
+    # 必须全部变量重新存进去
+    ScfOperate.EnvWrite(refresh_token, function_name, clien_id, secret,
+                        redirect_uri, region)
+
     headers = {
         'Authorization': access_token,
         'Content-Type': 'application/json'
