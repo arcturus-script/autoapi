@@ -10,9 +10,9 @@ from tencentcloud.scf.v20180416 import scf_client, models
 # 具体参考腾讯云的文档
 # https://cloud.tencent.com/document/product/583/18580
 def EnvWrite(refresh_token, function_name, clien_id, secret, redirect_uri,
-             region):
+             region, SecretId, SecretKey):
     try:
-        cred = credential.Credential("SecretId", "SecretKey")
+        cred = credential.Credential(SecretId, SecretKey)
         httpProfile = HttpProfile()
         httpProfile.endpoint = "scf.tencentcloudapi.com"  # 就近地域接入
 
@@ -43,6 +43,12 @@ def EnvWrite(refresh_token, function_name, clien_id, secret, redirect_uri,
                 }, {
                     "Key": "region",
                     "Value": region
+                }, {
+                    "Key": "secret_id",
+                    "Value": SecretId
+                }, {
+                    "Key": "secret_key",
+                    "Value": SecretKey
                 }]
             }
         }

@@ -43,6 +43,9 @@ def start():
     function_name = os.getenv('function_name')
     # 云函数地区
     region = os.getenv('region')
+    # 密钥
+    SecretId = os.getenv('secret_id')
+    SecretKey = os.getenv('secret_key')
 
     # 获取 refresh_token 和 access_token
     token = ut.get_token(refresh_token, clien_id, secret, redirect_uri)
@@ -51,7 +54,7 @@ def start():
     # 将 refresh_token 存入环境变量
     # 必须全部变量重新存进去
     ScfOperate.EnvWrite(refresh_token, function_name, clien_id, secret,
-                        redirect_uri, region)
+                        redirect_uri, region, SecretId, SecretKey)
 
     headers = {
         'Authorization': access_token,
