@@ -32,4 +32,6 @@
    | SecretId | 账号信息-访问管理-访问密钥-新建密钥 [地址](https://console.cloud.tencent.com/cam/capi) |
    | SecretKey | 同 SecretId |
 
+   [![50uonS.png](https://z3.ax1x.com/2021/10/19/50uonS.png)](https://imgtu.com/i/50uonS)
+
 4. 触发器可以选择每 30 分钟执行一次，两次执行的间隔不能超过 1 个小时，因为 refresh_token 能够换取 access_token 的有效时间仅 1 小时
