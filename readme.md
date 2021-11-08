@@ -21,6 +21,8 @@
 
 3. 填写环境变量，具体需要有
 
+   [![5gTYut.png](https://z3.ax1x.com/2021/10/23/5gTYut.png)](https://imgtu.com/i/5gTYut)
+   
    |    变量名     |       描述       |
    | :-----------: | :--------------: |
    |   clien_id    |      应用ID      |
