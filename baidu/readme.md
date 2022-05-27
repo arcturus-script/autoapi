@@ -8,6 +8,7 @@
 |  REDIRECT_URL  |    重定向地址    |
 |  AK  |   代码中说明    |
 |  SK  |    代码中说明 |
+
 补充说明
 1. FUNC 默认 autoApi, 因此可以不写, 只要函数名是这个即可
 2. HOST 默认 cfc.gz.baidubce.com, 即华南-广州, 是这个也可以不写
