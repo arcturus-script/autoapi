@@ -122,7 +122,7 @@ def main(*arg):
             "Content-Type": "application/json",
         }
 
-        for j in range(1, 2):
+        for j in range(1, 4):
             print(f"第 {j} 次执行".center(20, '#'))
             try:
                 for i, API in enumerate(APIS):
