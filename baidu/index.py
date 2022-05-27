@@ -123,20 +123,22 @@ def main(*arg):
             "Content-Type": "application/json",
         }
 
-        try:
-            for i, API in enumerate(APIS):
-                if req.get(API, headers=HEADERS).status_code == 200:
-                    print(f"第 {i + 1} 次调用成功")
-                else:
-                    print(f"第 {i + 1} 次调用失败")
+        for j in range(1, 4):
+            print(f"第 {j} 次执行".center(20, '#'))
+            try:
+                for i, API in enumerate(APIS):
+                    if req.get(API, headers=HEADERS).status_code == 200:
+                        print(f"第 {i + 1} 次调用成功")
+                    else:
+                        print(f"第 {i + 1} 次调用失败")
 
-                timeDelay(1, 4)
+                    timeDelay(1, 2)
 
-            localtime = time.asctime(time.localtime(time.time()))
+                    localtime = time.asctime(time.localtime(time.time()))
 
-            print(f"运行结束时间为 {localtime}")
+                    print(f"运行结束时间为 {localtime}")
 
-        except Exception as e:
-            print(f"调用 API 时出现异常, 原因 {e}")
+            except Exception as e:
+                print(f"调用 API 时出现异常, 原因 {e}")
 
-        timeDelay(1, 4)
+            timeDelay(1, 4)
