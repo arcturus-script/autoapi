@@ -13,8 +13,9 @@ def update(REFRESH_TOKEN: str) -> None:
         AK: Access Key,  SK: Secret Key
         可登录 https://console.bce.baidu.com/iam/?_=1653631921430#/iam/accesslist 查看
         """
-        AK = os.environ["BCE_ACCESS_KEY_ID"]
-        SK = os.environ["BCE_ACCESS_KEY_SECRET"]
+        AK = os.environ["AK"]
+        SK = os.environ["SK"]
+        
         REDIRECT_URL = os.environ["REDIRECT_URL"]
         FUNC = os.getenv("FUNC", "autoApi")
 
@@ -31,13 +32,13 @@ def update(REFRESH_TOKEN: str) -> None:
 
         config = BceClientConfiguration(
             credentials=BceCredentials(AK, SK),
-            endpoint=f"http://{HOST}",
+            endpoint=f"https://{HOST}",
         )
 
         # CFC 服务的客户端
         cfc_client = CfcClient(config)
 
-        cfc_client.update_function_configuration(
+        resp = cfc_client.update_function_configuration(
             FUNC,
             description="更新环境变量🎉",
             environment={
@@ -47,6 +48,8 @@ def update(REFRESH_TOKEN: str) -> None:
                 "HOST": HOST,
                 "CLIENT_ID": CLIENT_ID,
                 "SECRET": SECRET,
+                "AK": AK,
+                "SK": SK,
             },
         )
 
@@ -104,10 +107,6 @@ APIS = [
 ]
 
 
-def timeDelay(x, y):
-    time.sleep(random.randrange(x, y))
-
-
 def main(*arg):
     token = get_token()
 
@@ -123,16 +122,16 @@ def main(*arg):
             "Content-Type": "application/json",
         }
 
-        for j in range(1, 4):
+        for j in range(1, 2):
             print(f"第 {j} 次执行".center(20, '#'))
             try:
                 for i, API in enumerate(APIS):
-                    if req.get(API, headers=HEADERS).status_code == 200:
+                    if req.get(API, headers=HEADERS, timeout=6).status_code == 200:
                         print(f"第 {i + 1} 次调用成功")
                     else:
                         print(f"第 {i + 1} 次调用失败")
 
-                    timeDelay(1, 2)
+                    time.sleep(random.randrange(1, 2))
 
                     localtime = time.asctime(time.localtime(time.time()))
 
@@ -141,4 +140,4 @@ def main(*arg):
             except Exception as e:
                 print(f"调用 API 时出现异常, 原因 {e}")
 
-            timeDelay(1, 4)
+            time.sleep(random.randrange(1, 2))
