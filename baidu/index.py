@@ -111,18 +111,17 @@ def timeDelay(x, y):
 def main(*arg):
     token = get_token()
 
-    ACCESS_TOKEN = token["ACCESS_TOKEN"]
-    REFRESH_TOKEN = token["REFRESH_TOKEN"]
+    if token is not None:
+        
+        ACCESS_TOKEN = token["ACCESS_TOKEN"]
+        REFRESH_TOKEN = token["REFRESH_TOKEN"]
 
-    update(REFRESH_TOKEN)  # 更新 refresh_token
+        update(REFRESH_TOKEN)  # 更新 refresh_token
 
-    HEADERS = {
-        "Authorization": ACCESS_TOKEN,
-        "Content-Type": "application/json",
-    }
-
-    for i in range(3):
-        print(f"开始第{i+1}次测试".center(20, "#"))
+        HEADERS = {
+            "Authorization": ACCESS_TOKEN,
+            "Content-Type": "application/json",
+        }
 
         try:
             for i, API in enumerate(APIS):
