@@ -3,7 +3,7 @@ configs = [
         "client_id": "",
         "secret": "",
         "redirect_uri": "https://alist.nn.ci/tool/onedrive/callback",
-        "redis_host": "localhost",
+        "redis_host": "192.168.1.248",
         "redis_port": 6379,
         "redis_key": "drive",  # stay unique
         "refresh_token": "",  # can keep empty, or initial value
