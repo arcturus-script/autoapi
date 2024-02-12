@@ -7,6 +7,7 @@ configs = [
         "redis_port": 6379,
         "redis_key": "drive",  # stay unique
         "refresh_token": "",  # can keep empty, or initial value
+        "redis_password": "",
     }
 ]
 

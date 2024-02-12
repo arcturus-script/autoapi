@@ -13,6 +13,7 @@ class AutoApi:
         self.redis = redis.StrictRedis(
             host=conf.get("redis_host"),
             port=conf.get("redis_port"),
+            password=conf.get("redis_password"),
         )
 
     def test_key_exists(self):
